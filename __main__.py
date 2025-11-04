@@ -6,6 +6,8 @@ import pulumi
 import pulumi_gcp as gcp
 
 PUBLIC_KEY = os.getenv("SSH_PUB_KEY", "").strip()
+if not PUBLIC_KEY:
+    raise Exception("SSH_PUB_KEY env var is required")
 
 gcp_cfg = pulumi.Config("gcp")
 wp_cfg = pulumi.Config("wp")
